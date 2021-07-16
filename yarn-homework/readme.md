@@ -33,7 +33,8 @@ job.setNumReduceTasks(3);
 
 然后得到结果：
 
-![作业](JobResult_Reducer_3.jpeg)
+![3 个Reducer](JobResult_Reducer_3.jpeg)
 
-![](cat_output_maxInputSplitSize_512.jpeg)
+![最大输入切分大小512](cat_output_maxInputSplitSize_512.jpeg)
 
+实际本地跑可以看到3个 `Reducer` 都有对应的输出，线上还是只有两个 `Reducer` 收到了任务。
