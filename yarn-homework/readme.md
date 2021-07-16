@@ -24,7 +24,7 @@ Value 对象 [FlowBean](../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/
 每个文件的输出：
 ![每个文件的输出](cat_output_each_file.jpeg)
 
-于是后续查看输入文件大概2kb，设置了最大输入切分大小和 `Reducer` 数量：
+后续查看输入文件大概2.2kb，设置了最大输入切分大小和 `Reducer` 数量：
 
 ``` Java
 FileInputFormat.setMaxInputSplitSize(job, 512);
@@ -36,5 +36,7 @@ job.setNumReduceTasks(3);
 ![3 个Reducer](JobResult_Reducer_3.jpeg)
 
 ![最大输入切分大小512](cat_output_maxInputSplitSize_512.jpeg)
+
+最终看到，Job 内切分了 5 个 `Mapper`，3 个 `Reducer`。
 
 实际本地跑可以看到3个 `Reducer` 都有对应的输出，线上还是只有两个 `Reducer` 收到了任务。
