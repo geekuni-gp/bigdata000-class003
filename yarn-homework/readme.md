@@ -24,6 +24,8 @@ Value 对象 [FlowBean](../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/
 每个文件的输出：
 ![每个文件的输出](cat_output_each_file.jpeg)
 
+### 自定义切分大小和 `Reducer` 数量
+
 后续查看输入文件大概2.2kb，设置了最大输入切分大小和 `Reducer` 数量：
 
 ``` Java
