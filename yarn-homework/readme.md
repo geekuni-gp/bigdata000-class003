@@ -35,6 +35,7 @@ job.setNumReduceTasks(3);
 
 然后得到结果：
 
+http://jikehadoop03:19888/jobhistory/job/job_1625908641529_0329
 ![3 个Reducer](JobResult_Reducer_3.jpeg)
 
 ![最大输入切分大小512](cat_output_maxInputSplitSize_512.jpeg)
