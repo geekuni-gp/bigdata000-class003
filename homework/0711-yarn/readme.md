@@ -2,11 +2,11 @@
 
 ### Code
 
-主逻辑代码 [PhoneFlowStatistic](../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/PhoneFlowStatistic.java)
+主逻辑代码 [PhoneFlowStatistic](../../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/PhoneFlowStatistic.java)
 
-Key 对象 [PhoneBean](../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/PhoneBean.java)
+Key 对象 [PhoneBean](../../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/PhoneBean.java)
 
-Value 对象 [FlowBean](../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/FlowBean.java)
+Value 对象 [FlowBean](../../bigdata-exercise/src/main/java/org/n0nb0at/phoneflow/FlowBean.java)
 
 ### Result
 
