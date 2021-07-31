@@ -17,4 +17,4 @@ HBaseOperation [HBaseOperation](../../bigdata-exercise/src/main/java/org/n0nb0at
 
 ![scan](scan.png)
 
-除了作业内提到的创建、写入等操作，在自己集群上尝试了其他
+除了作业内提到的创建、写入等操作，在自己集群上尝试了其他命名空间、表、数据的命令行操作。
