@@ -23,10 +23,10 @@ public class HBaseOperation {
             createTable("guopeng:student", "info", "score");
 
             // 更新字段信息
-            insertData("guopeng:student", "guopeng", "info", "student_id", "20190343020028");
+            /*insertData("guopeng:student", "guopeng", "info", "student_id", "20190343020028");
             insertData("guopeng:student", "guopeng", "info", "class", "3");
             insertData("guopeng:student", "guopeng", "score", "underStanding", "60");
-            insertData("guopeng:student", "guopeng", "score", "programing", "80");
+            insertData("guopeng:student", "guopeng", "score", "programing", "80");*/
 
             // 查询行信息：可指定列族、列名
             getData("guopeng:student", "guopeng", StringUtils.EMPTY, StringUtils.EMPTY);
@@ -43,7 +43,7 @@ public class HBaseOperation {
 //        configuration.set("hbase.rootdir", "hdfs://master01:9000/hbase");
 //        configuration.set("hbase.zookeeper.quorum", "master01,slave01,slave02");
         configuration.set("hbase.rootdir", "hdfs://jikehadoop01:9000/hbase");
-        configuration.set("hbase.zookeeper.quorum", "jikehadoop01,jikehadoop02,jikehadoop03,jikehadoop04");
+        configuration.set("hbase.zookeeper.quorum", "47.101.216.12");
         configuration.set("hbase.zookeeper.property.clientPort", "2181");
         try {
             connection = ConnectionFactory.createConnection(configuration);
