@@ -119,6 +119,4 @@ SELECT m.moviename, avg(r.rate) AS avgrate
 
 ### 附加作业：GeekFileFormat
 
-``` Shell
-TODO 正在研究，后续补充
-```
+内容较多，请移步 [附加作业：GeekFileFormat](format/readme.md)
