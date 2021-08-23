@@ -1,0 +1,5 @@
+a:Map(file2 -> 1)
+banana:Map(file2 -> 1)
+is:Map(file2 -> 1, file1 -> 1, file0 -> 2)
+it:Map(file2 -> 1, file1 -> 1, file0 -> 2)
+what:Map(file1 -> 1, file0 -> 1)
