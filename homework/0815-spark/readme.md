@@ -89,3 +89,11 @@ object InvertedIndex {
 ``` Shell
 TODO: 探索中
 ```
+
+听了老师周日课程的讲解，大致思路和之前想的是基本一样的，但是如何实现还在探索中。
+
+这次作业很多时间都是在学习 `Scala` 和 `RDD 算子` 怎么使用，如何实现一个完整的 `DistCP` 还是有些吃力。
+
+只能先从模仿中学习，正在看 [CoxAutomotiveDataSolutions/spark-distcp](https://github.com/CoxAutomotiveDataSolutions/spark-distcp) & [scala-lang/spark-distcp](https://index.scala-lang.org/coxautomotivedatasolutions/spark-distcp/spark-distcp/0.2.2?target=_2.12)。这是同一个项目，一个是源码，一个是包管理工具的配置。
+
+一开始下载了源码，但是 `sbt` 编译麻烦，重新拉取了 `maven` 包在看。

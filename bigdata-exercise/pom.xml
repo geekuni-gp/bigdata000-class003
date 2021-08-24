@@ -19,6 +19,7 @@
         <hive.version>2.1.1-cdh6.3.2</hive.version>
         <spark.version>2.4.0-cdh6.3.2</spark.version>
         <scala.version>2.11</scala.version>
+        <coxautodata.version>0.2.2</coxautodata.version>
     </properties>
     <repositories>
         <repository>
@@ -150,6 +151,12 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-mllib_${scala.version}</artifactId>
             <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.coxautodata</groupId>
+            <artifactId>spark-distcp_2.12</artifactId>
+            <version>${coxautodata.version}</version>
         </dependency>
 
     </dependencies>
