@@ -1,76 +1,40 @@
 package org.n0nb0at.spark.distcp
 
-import java.net.URI
-
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
+
+import java.net.URI
 
 object OptionsParsing {
 
   /**
-    * Parse a set of command-line arguments into a [[Config]] object
-    */
+   * Parse a set of command-line arguments into a [[Config]] object
+   */
   def parse(args: Array[String], hadoopConfiguration: Configuration): Config = {
+    val builder = scopt.OParser.builder[Config]
+    val parser = {
+      import builder._
+      scopt.OParser.sequence(
+        opt[Unit]("i")
+          .action((_, c) => c.copyOptions(_.copy(ignoreFailures = true)))
+          .optional()
+          .text("Ignore failures"),
 
-    val parser = new scopt.OptionParser[Config]("") {
-      opt[Unit]("i")
-        .action((_, c) => c.copyOptions(_.copy(ignoreErrors = true)))
-        .text("Ignore failures")
+        opt[Int]("m")
+          .action((i, c) => c.copyOptions(_.copy(maxConcurrenceTask = i)))
+          .optional()
+          .text("Maximum number of files to copy in a single Spark task"),
 
-      opt[String]("log")
-        .action((log, c) => c.copyOptions(_.copy(log = Some(new URI(log)))))
-        .text("Write logs to a URI")
+        help("help").text("prints this usage text").optional(),
 
-      opt[Unit]("dryrun")
-        .action((_, c) => c.copyOptions(_.copy(dryRun = true)))
-        .text("Perform a trial run with no changes made")
-
-      opt[Unit]("verbose")
-        .action((_, c) => c.copyOptions(_.copy(verbose = true)))
-        .text("Run in verbose mode")
-
-      opt[Unit]("overwrite")
-        .action((_, c) => c.copyOptions(_.copy(overwrite = true)))
-        .text("Overwrite destination")
-
-      opt[Unit]("update")
-        .action((_, c) => c.copyOptions(_.copy(update = true)))
-        .text("Overwrite if source and destination differ in size, or checksum")
-
-      opt[String]("filters")
-        .action((f, c) => c.copyOptions(_.withFiltersFromFile(new URI(f), hadoopConfiguration)))
-        .text("The path to a file containing a list of pattern strings, one string per line, such that paths matching the pattern will be excluded from the copy.")
-
-      opt[Unit]("delete")
-        .action((_, c) => c.copyOptions(_.copy(delete = true)))
-        .text("Delete the files existing in the dst but not in src")
-
-      opt[Int]("numListstatusThreads")
-        .action((i, c) => c.copyOptions(_.copy(numListstatusThreads = i)))
-        .text("Number of threads to use for building file listing")
-
-      opt[Unit]("consistentPathBehaviour")
-        .action((_, c) => c.copyOptions(_.copy(consistentPathBehaviour = true)))
-        .text("Revert the path behaviour when using overwrite or update to the path behaviour of non-overwrite/non-update")
-
-      opt[Int]("maxFilesPerTask")
-        .action((i, c) => c.copyOptions(_.copy(maxFilesPerTask = i)))
-        .text("Maximum number of files to copy in a single Spark task")
-
-      opt[Long]("maxBytesPerTask")
-        .action((i, c) => c.copyOptions(_.copy(maxBytesPerTask = i)))
-        .text("Maximum number of bytes to copy in a single Spark task")
-
-      help("help").text("prints this usage text")
-
-      arg[String]("[source_path...] <target_path>")
-        .unbounded()
-        .minOccurs(2)
-        .action((u, c) => c.copy(URIs = c.URIs :+ new URI(u)))
-
+        arg[String]("[source_path...] <target_path>")
+          .unbounded()
+          .minOccurs(1)
+          .action((u, c) => c.copy(URIs = c.URIs :+ new URI(u)))
+      )
     }
 
-    parser.parse(args, Config()) match {
+    scopt.OParser.parse(parser, args, Config()) match {
       case Some(config) =>
         config.options.validateOptions()
         config
@@ -78,7 +42,6 @@ object OptionsParsing {
         throw new RuntimeException("Failed to parse arguments")
     }
   }
-
 }
 
 case class Config(options: SparkDistCPOptions = SparkDistCPOptions(), URIs: Seq[URI] = Seq.empty) {
@@ -93,5 +56,4 @@ case class Config(options: SparkDistCPOptions = SparkDistCPOptions(), URIs: Seq[
       case _ => throw new RuntimeException("Incorrect number of URIs")
     }
   }
-
 }

@@ -153,10 +153,16 @@
             <version>${spark.version}</version>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.coxautodata</groupId>
             <artifactId>spark-distcp_2.12</artifactId>
             <version>${coxautodata.version}</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.github.scopt/scopt -->
+        <dependency>
+            <groupId>com.github.scopt</groupId>
+            <artifactId>scopt_2.11</artifactId>
+            <version>4.0.1</version>
         </dependency>
 
     </dependencies>
@@ -179,7 +185,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.n0nb0at.phoneflow</mainClass>
+                            <mainClass>org.n0nb0at.spark.distcp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -196,37 +202,50 @@
 
             <!-- scala compile -->
             <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>3.2.2</version>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.15.2</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*.scala</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
-                <!--<configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>${sc.mainclass}</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>-->
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.1</version>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <shadedArtifactAttached>false</shadedArtifactAttached>
+                    <outputFile>${groupID}-shaded.jar</outputFile>
+                    <artifactSet>
+                        <includes>
+                            <!-- <include>com/haha/test/**</include>-->
+                            <include>com.github.scopt:scopt_2.11</include>
+                        </includes>
+                    </artifactSet>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
