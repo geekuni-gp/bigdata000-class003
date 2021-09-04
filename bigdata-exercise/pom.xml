@@ -17,8 +17,11 @@
         <hadoop-core.version>1.2.1</hadoop-core.version>
         <hbase.version>2.1.0</hbase.version>
         <hive.version>2.1.1-cdh6.3.2</hive.version>
-        <spark.version>2.4.0-cdh6.3.2</spark.version>
-        <scala.version>2.11</scala.version>
+        <!--<spark.version>2.4.0-cdh6.3.2</spark.version>
+        <scala.version>2.11</scala.version>-->
+
+        <spark.version>3.1.2</spark.version>
+        <scala.version>2.12</scala.version>
         <coxautodata.version>0.2.2</coxautodata.version>
     </properties>
     <repositories>
@@ -185,7 +188,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.n0nb0at.spark.distcp</mainClass>
+                            <mainClass>org.n0nb0at.spark.sql.extension.CustomSparkSessionExtension</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -232,11 +235,12 @@
                 <version>2.4.3</version>
                 <configuration>
                     <shadedArtifactAttached>false</shadedArtifactAttached>
-                    <outputFile>${groupID}-shaded.jar</outputFile>
+                    <outputFile>${artifactId}-shaded.jar</outputFile>
                     <artifactSet>
                         <includes>
                             <!-- <include>com/haha/test/**</include>-->
                             <include>com.github.scopt:scopt_2.11</include>
+
                         </includes>
                     </artifactSet>
                 </configuration>
