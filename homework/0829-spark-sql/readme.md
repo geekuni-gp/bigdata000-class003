@@ -99,6 +99,8 @@ override def visitShowVersion(ctx: ShowVersionContext): LogicalPlan = withOrigin
 
 然后翻代码，发现 `CombineFilters` 只被 `PushDownPredicates` 调用了，所以这边认为谓词下推属于合并过滤器。
 
+
+
 ``` SQL
 CREATE TABLE Tab1(a1 INT, a2 INT) USING parquet;
 
