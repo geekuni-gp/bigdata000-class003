@@ -28,7 +28,33 @@
 
 ## 题目二：实现Compact table command
 
+与上次实现 `SHOW VERSION` 作业相类似，增加一个 SQL 语句及对应的 `Command` 类实现。
 
+大致思路：
+
+1、添加自定义语句到 `SqlBase.g4`：
+
+``` SQL
+| COMPACT TABLE target=tableIdentifier partitionSpec?
+    (INTO fileNum=INTEGER_VALUE identifier)?                       #compactTable
+```
+
+2、添加 `visitCompactTable` 方法到 `SparkSqlParser.scala`
+
+``` Scala
+override def visitCompactTable(ctx: CompactTableContext): LogicalPlan = withOrigin(ctx) {
+  CompactTableCommand()
+}
+```
+
+3、实现 `CompactTableCommand` 具体合并逻辑
+
+- [x] 存在 `ctx.partitionSpec`，则获取指定 partition 目录下的问题件进行操作：`Option(ctx.partitionSpec).map { ...}`
+- [x] 通过 `ctx.fileNum` 执行合并后的文件数量
+  
+- [ ] 合并文件：？？？
+
+***如何合并还没成功实现……基本思路是想批量读取后通过 `repartition` 算子进行操作，还在实验中。***
 
 ## 题目三：Insert命令自动合并小文件
 
