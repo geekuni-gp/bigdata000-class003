@@ -78,3 +78,10 @@ FROM hive.default.tbl_hll ;
 
 将文件打 jar 包上传后，在云端服务器运行成功了：
 
+![](jdbc.png)
+
+### Code
+
+代码直接使用的帮助文档实例，只是把需要执行的语句作为参数传递了。也没有进行其他调整，只支持查询结果的简单输出。
+
+[PrestoJDBCExercise](../../presto-jdbc-exercise/src/main/java/org/n0nb0at/presto/PrestoJDBCExercise.java)
