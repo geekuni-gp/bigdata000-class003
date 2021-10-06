@@ -69,3 +69,12 @@ FROM hive.default.tbl_hll ;
 ## 题目三：学习使用 Presto-Jdbc 库连接 Docker 或 E-MapReduce 环境，重复上述查询
 
 查到了阿里云官方帮助文档 [Presto 使用JDBC](https://help.aliyun.com/document_detail/108859.html)，还在尝试中。
+
+![emr-presto-version](emr-presto-version.png)
+
+查询了集群中的 `Presto` 版本为 338。
+
+后续按照帮助文档进行了本地代码实现，但是集群的默认安全组未开放 `9090` 端口，没有在本地调试成功。
+
+将文件打 jar 包上传后，在云端服务器运行成功了：
+
