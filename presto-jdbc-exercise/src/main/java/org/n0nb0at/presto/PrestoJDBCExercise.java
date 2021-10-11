@@ -15,6 +15,7 @@ public class PrestoJDBCExercise {
             LOGGER.error("args length cannot be 0");
             System.exit(-1);
         }
+        int connect;
 
         String queryStr = args[0];
 
@@ -28,7 +29,7 @@ public class PrestoJDBCExercise {
         Connection connection = null;
         Statement statement = null;
         try {
-            String url = "jdbc:presto://172.16.63.32:9090/hive/default";
+            String url = "jdbc:presto://106.15.194.185:9090/hive/default";
             Properties properties = new Properties();
             properties.setProperty("user", "hadoop");
             // 创建连接对象。

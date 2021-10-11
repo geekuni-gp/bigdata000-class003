@@ -78,7 +78,11 @@ FROM hive.default.tbl_hll ;
 
 将文件打 jar 包上传后，在云端服务器运行成功了：
 
-![](jdbc.png)
+![jdbc](jdbc.png)
+
+后续助教老师帮忙配置了 `Presto` 安全组的 `9090` 端口，本地测试成功（由于节后事务较多，还是用的之前的简单例子处理）：
+
+![local](local.png)
 
 ### Code
 
