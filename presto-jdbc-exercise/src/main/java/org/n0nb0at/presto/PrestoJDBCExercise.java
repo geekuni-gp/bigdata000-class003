@@ -15,7 +15,6 @@ public class PrestoJDBCExercise {
             LOGGER.error("args length cannot be 0");
             System.exit(-1);
         }
-        int connect;
 
         String queryStr = args[0];
 
